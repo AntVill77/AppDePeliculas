@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/Theme.MovieFan"
+    android:background="?attr/colorSurface">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleTextAppearance="?attr/titleTextColor"
+            app:collapsedTitleTextAppearance="?attr/titleTextColor"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/mi_poster"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                app:layout_collapseMode="parallax" />
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/mi_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/Theme.MovieFan"/>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/mi_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <FrameLayout
+                android:id="@+id/youtube_container"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/mi_yt_fragment_height"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/mi_pb"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/youtube_container"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/mi_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:textColor="?attr/titleTextColor"
+                android:textStyle="bold"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/youtube_container" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/mi_tagline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textStyle="italic"
+                app:layout_constraintStart_toStartOf="@+id/mi_title"
+                app:layout_constraintTop_toBottomOf="@+id/mi_title" />
+
+            <androidx.appcompat.widget.AppCompatRatingBar
+                android:id="@+id/mi_ratingbar"
+                style="?android:ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:progressBackgroundTint="@color/purple"
+                app:layout_constraintStart_toStartOf="@+id/mi_tagline"
+                app:layout_constraintTop_toBottomOf="@+id/mi_tagline" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/mi_reviews"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                app:layout_constraintStart_toEndOf="@+id/mi_ratingbar"
+                app:layout_constraintTop_toTopOf="@+id/mi_ratingbar" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/mi_genres_title"
+                style="@style/MovieInfoTextSubtitle"
+                app:layout_constraintStart_toStartOf="@id/mi_ratingbar"
+                app:layout_constraintTop_toBottomOf="@id/mi_ratingbar" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/mi_genres"
+                style="@style/MovieInfoText"
+                app:layout_constraintEnd_toEndOf="@+id/mi_title"
+                app:layout_constraintStart_toEndOf="@id/mi_reviews"
+                app:layout_constraintTop_toBottomOf="@id/mi_ratingbar" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/mi_countries_title"
+                style="@style/MovieInfoTextSubtitle"
+                app:layout_constraintStart_toStartOf="@id/mi_ratingbar"
+                app:layout_constraintTop_toBottomOf="@id/mi_genres" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/mi_countries"
+                style="@style/MovieInfoText"
+                app:layout_constraintEnd_toEndOf="@+id/mi_title"
+                app:layout_constraintStart_toEndOf="@id/mi_reviews"
+                app:layout_constraintTop_toBottomOf="@id/mi_genres" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/mi_companies_title"
+                style="@style/MovieInfoTextSubtitle"
+                app:layout_constraintStart_toStartOf="@id/mi_ratingbar"
+                app:layout_constraintTop_toBottomOf="@id/mi_countries" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/mi_companies"
+                style="@style/MovieInfoText"
+                app:layout_constraintEnd_toEndOf="@+id/mi_title"
+                app:layout_constraintStart_toEndOf="@id/mi_reviews"
+                app:layout_constraintTop_toBottomOf="@id/mi_countries" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/mi_budget_title"
+                style="@style/MovieInfoTextSubtitle"
+                app:layout_constraintStart_toStartOf="@id/mi_ratingbar"
+                app:layout_constraintTop_toBottomOf="@id/mi_companies" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/mi_budget"
+                style="@style/MovieInfoText"
+                app:layout_constraintEnd_toEndOf="@+id/mi_title"
+                app:layout_constraintStart_toEndOf="@id/mi_reviews"
+                app:layout_constraintTop_toBottomOf="@id/mi_companies" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/mi_revenue_title"
+                style="@style/MovieInfoTextSubtitle"
+                app:layout_constraintStart_toStartOf="@id/mi_ratingbar"
+                app:layout_constraintTop_toBottomOf="@id/mi_budget" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/mi_revenue"
+                style="@style/MovieInfoText"
+                app:layout_constraintEnd_toEndOf="@+id/mi_title"
+                app:layout_constraintStart_toEndOf="@id/mi_reviews"
+                app:layout_constraintTop_toBottomOf="@id/mi_budget" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/mi_cast_title"
+                style="@style/MovieInfoTextSubtitle"
+                app:layout_constraintStart_toStartOf="@id/mi_ratingbar"
+                app:layout_constraintTop_toBottomOf="@id/mi_revenue" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/mi_cast"
+                style="@style/MovieInfoText"
+                app:layout_constraintEnd_toEndOf="@+id/mi_title"
+                app:layout_constraintStart_toEndOf="@id/mi_reviews"
+                app:layout_constraintTop_toBottomOf="@id/mi_revenue" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/mi_more_about_cast"
+                android:text="@string/more"
+                android:textStyle="italic"
+                android:layout_marginEnd="8dp"
+                android:visibility="invisible"
+                app:layout_constraintTop_toBottomOf="@id/mi_cast"
+                app:layout_constraintEnd_toEndOf="@+id/mi_cast"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/mi_title_overview"
+                android:text="@string/mi_overview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:textColor="?attr/titleTextColor"
+                android:textStyle="bold"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mi_more_about_cast" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/mi_overview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                app:layout_constraintEnd_toEndOf="@+id/mi_title_overview"
+                app:layout_constraintStart_toStartOf="@+id/mi_title_overview"
+                app:layout_constraintTop_toBottomOf="@id/mi_title_overview" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/mi_title_images"
+                android:text="@string/mi_images"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:textColor="?attr/titleTextColor"
+                android:textStyle="bold"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mi_overview" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="0dp"
+                android:layout_height="180dp"
+                android:id="@+id/mi_rv_images"
+                app:layout_constraintTop_toBottomOf="@id/mi_title_images"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/mi_title_similar_movies"
+                android:text="@string/mi_similar_movies"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:textColor="?attr/titleTextColor"
+                android:textStyle="bold"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mi_rv_images" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="0dp"
+                android:layout_height="320dp"
+                android:id="@+id/mi_rv_similar_movies"
+                app:layout_constraintTop_toBottomOf="@id/mi_title_similar_movies"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

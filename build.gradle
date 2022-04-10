@@ -1,0 +1,148 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:7.0.3"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.20"
+        classpath "org.jetbrains.kotlin:kotlin-serialization:1.5.21"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:2.39.1"
+        classpath 'com.google.gms:google-services:4.3.10'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.8.0'
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+ext.versions = [
+        dagger                    : "2.39.1",
+        hilt                      : "2.39.1",
+        paging3                   : "3.0.0-alpha03",
+        ktor                      : "1.6.3",
+        logback                   : "1.2.3",
+        coil                      : "1.4.0",
+        junit_ext                 : "1.1.3",
+        espresso_core             : "3.4.0",
+        junit                     : "4.13.2",
+        cardview                  : "1.0.0",
+        room                      : "2.3.0",
+        swipe_refresh             : "1.1.0",
+        prompt                    : "3.3.2",
+        crashlytics               : "18.2.4",
+        analytics                 : "20.0.0",
+        gson                      : "2.8.7",
+        androidx_core             : "1.7.0",
+        androidx_appcompat        : "1.4.0",
+        androidx_fragment         : "1.4.0",
+        constraint_layout         : "2.1.2",
+        material                  : "1.4.0",
+        truth                     : "1.0.1",
+        turbine                   : "0.7.0",
+        coroutines_lifecycle_scopes: "2.4.0",
+        coroutines                : "1.5.2",
+        coroutines_test           : "1.5.0",
+        picasso                   : "2.71828"
+]
+
+ext.coroutine_lifecycle_scopes = [
+        viewmodel_ktx: "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.coroutine_lifecycle_scopes",
+        runtime_ktx  : "androidx.lifecycle:lifecycle-runtime-ktx:$versions.coroutine_lifecycle_scopes"
+]
+
+ext.picasso = [
+        picasso: "com.squareup.picasso:picasso:$versions.picasso"
+]
+
+ext.coroutines_test = [
+        test: "org.jetbrains.kotlinx:kotlinx-coroutines-test:$versions.coroutines_test"
+]
+
+ext.turbine = [
+        turbine: "app.cash.turbine:turbine:$versions.turbine"
+]
+
+ext.truth = [
+        truth: "com.google.truth:truth:$versions.truth"
+]
+
+ext.coroutines = [
+        core   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutines",
+        android: "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines"
+]
+
+ext.dagger = [
+        dagger         : "com.google.dagger:dagger:$versions.dagger",
+        dagger_compiler: "com.google.dagger:dagger-compiler:$versions.dagger"
+]
+
+ext.ktor = [
+        core         : "io.ktor:ktor-client-core:$versions.ktor",
+        android      : "io.ktor:ktor-client-android:$versions.ktor",
+        serialization: "io.ktor:ktor-client-serialization:$versions.ktor",
+        logging      : "io.ktor:ktor-client-logging:$versions.ktor",
+        logback      : "ch.qos.logback:logback-classic:$versions.logback"
+]
+
+ext.paging3 = [
+        paging_runtime: "androidx.paging:paging-runtime-ktx:$versions.paging3"
+]
+
+ext.coil = [
+        coil: "io.coil-kt:coil:$versions.coil"
+]
+
+ext.testing = [
+        junit_ext    : "androidx.test.ext:junit:$versions.junit_ext",
+        junit        : "junit:junit:$versions.junit",
+        espresso_core: "androidx.test.espresso:espresso-core:$versions.espresso_core",
+        mock_ktor    : "io.ktor:ktor-client-mock:$versions.ktor"
+]
+
+ext.dagger_hilt = [
+        hilt_android : "com.google.dagger:hilt-android:$versions.hilt",
+        hilt_compiler: "com.google.dagger:hilt-compiler:$versions.hilt"
+]
+
+ext.cardview = [
+        cardview: "androidx.cardview:cardview:$versions.cardview"
+]
+
+ext.room = [
+        room_runtime   : "androidx.room:room-runtime:$versions.room",
+        room_coroutines: "androidx.room:room-ktx:$versions.room",
+        room_compiler  : "androidx.room:room-compiler:$versions.room"
+]
+
+ext.prompts = [
+        material_tap_target_prompt: "uk.co.samuelwall:material-tap-target-prompt:$versions.prompt"
+]
+
+ext.swipe_refresh = [
+        swipe_refresh: "androidx.swiperefreshlayout:swiperefreshlayout:$versions.swipe_refresh"
+]
+
+ext.firebase = [
+        crashlytics: "com.google.firebase:firebase-crashlytics:$versions.crashlytics",
+        analytics  : "com.google.firebase:firebase-analytics:$versions.analytics"
+]
+
+ext.gson = [
+        gson: "com.google.code.gson:gson:$versions.gson"
+]
+
+ext.androidx = [
+        core             : "androidx.core:core-ktx:$versions.androidx_core",
+        appcompat        : "androidx.appcompat:appcompat:$versions.androidx_appcompat",
+        fragment         : "androidx.fragment:fragment-ktx:$versions.androidx_fragment",
+        constraint_layout: "androidx.constraintlayout:constraintlayout:$versions.constraint_layout"
+]
+
+ext.material = [
+        material: "com.google.android.material:material:$versions.material"
+]

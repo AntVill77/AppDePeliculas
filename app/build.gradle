@@ -1,0 +1,140 @@
+apply plugin: 'com.android.application'
+apply plugin: 'dagger.hilt.android.plugin'
+apply plugin: 'kotlin-android'
+apply plugin: 'org.jetbrains.kotlin.plugin.serialization'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
+
+androidExtensions {
+    experimental = true
+}
+
+android {
+    compileSdk 31
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    def localProperties = new Properties()
+    localProperties.load(new FileInputStream(rootProject.file("local.properties")))
+
+    defaultConfig {
+        applicationId "com.avelycure.moviefan"
+        minSdk 21
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    buildTypes.each {
+        it.buildConfigField 'String', 'TMDB_API_KEY', MyTheMovieDBApiToken
+    }
+    buildTypes.each {
+        it.buildConfigField 'String', 'YOUTUBE_API_KEY', YouTubeApiKey
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    //some files with same names are included in dependencies, so there are duplicates in project
+    packagingOptions {
+        resources.excludes.add("META-INF/*")
+    }
+}
+
+//this for hilt to work with kotlin
+kapt {
+    javacOptions {
+        // These options are normally set automatically via the Hilt Gradle plugin, but we
+        // set them manually to workaround a bug in the Kotlin 1.5.20
+        option("-Adagger.fastInit=ENABLED")
+        option("-Adagger.hilt.android.internal.disableAndroidSuperclassValidation=true")
+    }
+}
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation androidx.core
+    implementation androidx.appcompat
+    implementation androidx.fragment
+    implementation androidx.constraint_layout
+
+    implementation material.material
+
+    // Dagger
+    implementation dagger.dagger
+    kapt dagger.dagger_compiler
+
+    //Hilt
+    implementation dagger_hilt.hilt_android
+    kapt dagger_hilt.hilt_compiler
+
+    //Ktor
+    implementation ktor.core
+    implementation ktor.android
+    implementation ktor.serialization
+    implementation ktor.logging
+    implementation ktor.logback
+
+    //Paging3
+    implementation paging3.paging_runtime
+
+    //Picasso
+    implementation picasso.picasso
+
+    //CardView
+    implementation cardview.cardview
+
+    //Room
+    kapt room.room_compiler
+    implementation room.room_runtime
+    implementation room.room_coroutines
+
+    //Firebase
+    implementation firebase.analytics
+    implementation firebase.crashlytics
+
+    //Gson
+    implementation gson.gson
+
+    // Coroutines
+    implementation coroutines.core
+    implementation coroutines.android
+
+    // Coroutine Lifecycle Scopes
+    implementation coroutine_lifecycle_scopes.viewmodel_ktx
+    implementation coroutine_lifecycle_scopes.runtime_ktx
+
+    //Testing
+    androidTestImplementation truth.truth
+    androidTestImplementation turbine.turbine
+    androidTestImplementation testing.junit_ext
+    androidTestImplementation coroutines_test.test
+    androidTestImplementation testing.espresso_core
+
+    testImplementation testing.junit
+    testImplementation testing.mock_ktor
+    testImplementation truth.truth
+    testImplementation coroutines_test.test
+
+    //Tips
+    implementation prompts.material_tap_target_prompt
+
+    //Swipe refresh
+    implementation swipe_refresh.swipe_refresh
+}
